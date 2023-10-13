@@ -191,7 +191,9 @@
             Controls.Add(listPriceSellEuro);
             Controls.Add(label1);
             Controls.Add(listPriceBuyEuro);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Биржа";
             ResumeLayout(false);
             PerformLayout();

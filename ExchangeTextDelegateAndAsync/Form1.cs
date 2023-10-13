@@ -16,8 +16,9 @@ namespace ExchangeTextDelegateAndAsync
 
 
 
-            updateLabelsHandler = () => {
-                labelWalletRubles.Text = WalletRubles.ToString(); 
+            updateLabelsHandler = () =>
+            {
+                labelWalletRubles.Text = WalletRubles.ToString();
                 labelWalletEuro.Text = WalletEuro.ToString();
 
             };
