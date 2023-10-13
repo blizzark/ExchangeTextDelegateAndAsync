@@ -21,7 +21,7 @@
             "Новость, которую лучше не слышать"
         };
 
-        public (decimal, decimal) GetPriceBuy()
+        public void GetNews()
         {
             while (true)
             {

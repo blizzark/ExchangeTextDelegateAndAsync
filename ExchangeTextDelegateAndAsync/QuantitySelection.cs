@@ -57,6 +57,7 @@
         private void buttonOk_Click(object sender, EventArgs e)
         {
             Num = Convert.ToDecimal(textBoxSum.Text);
+            this.Close();
         }
     }
 }

@@ -6,7 +6,7 @@
 
         public Request? requestHandler { get; set; }
 
-        public (decimal, decimal) GetPriceBuy()
+        public void GetPriceBuySell()
         {
             while (true)
             {
@@ -15,7 +15,7 @@
                 do
                 {
                     priceBuy = (new Random()).Next(80, 90);
-                } while (priceBuy > priceSell);
+                } while (priceBuy < priceSell);
 
                 requestHandler?.Invoke(priceSell, priceBuy);
 

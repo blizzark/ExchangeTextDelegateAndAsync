@@ -35,9 +35,13 @@
             buttonBuy = new Button();
             buttonSell = new Button();
             label3 = new Label();
-            labelWallet = new Label();
+            labelWalletRubles = new Label();
             label5 = new Label();
             listNews = new ListBox();
+            label4 = new Label();
+            labelWalletEuro = new Label();
+            label6 = new Label();
+            listBoxLogs = new ListBox();
             SuspendLayout();
             // 
             // listPriceBuyEuro
@@ -52,11 +56,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(63, 9);
+            label1.Location = new Point(79, 9);
             label1.Name = "label1";
-            label1.Size = new Size(144, 20);
+            label1.Size = new Size(95, 20);
             label1.TabIndex = 1;
-            label1.Text = "Цена покупки Евро";
+            label1.Text = "Купить Евро";
             // 
             // listPriceSellEuro
             // 
@@ -72,9 +76,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(318, 9);
             label2.Name = "label2";
-            label2.Size = new Size(150, 20);
+            label2.Size = new Size(106, 20);
             label2.TabIndex = 3;
-            label2.Text = "Цена продажи Евро";
+            label2.Text = "Продать Евро";
             // 
             // buttonBuy
             // 
@@ -99,20 +103,20 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(542, 414);
+            label3.Location = new Point(542, 394);
             label3.Name = "label3";
-            label3.Size = new Size(73, 20);
+            label3.Size = new Size(127, 20);
             label3.TabIndex = 6;
-            label3.Text = "Кошелёк:";
+            label3.Text = "Кошелёк рублей:";
             // 
-            // labelWallet
+            // labelWalletRubles
             // 
-            labelWallet.AutoSize = true;
-            labelWallet.Location = new Point(621, 414);
-            labelWallet.Name = "labelWallet";
-            labelWallet.Size = new Size(17, 20);
-            labelWallet.TabIndex = 7;
-            labelWallet.Text = "0";
+            labelWalletRubles.AutoSize = true;
+            labelWalletRubles.Location = new Point(681, 394);
+            labelWalletRubles.Name = "labelWalletRubles";
+            labelWalletRubles.Size = new Size(17, 20);
+            labelWalletRubles.TabIndex = 7;
+            labelWalletRubles.Text = "0";
             // 
             // label5
             // 
@@ -129,17 +133,57 @@
             listNews.ItemHeight = 20;
             listNews.Location = new Point(532, 36);
             listNews.Name = "listNews";
-            listNews.Size = new Size(254, 344);
+            listNews.Size = new Size(254, 184);
             listNews.TabIndex = 9;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(542, 417);
+            label4.Name = "label4";
+            label4.Size = new Size(111, 20);
+            label4.TabIndex = 10;
+            label4.Text = "Кошелёк евро:";
+            // 
+            // labelWalletEuro
+            // 
+            labelWalletEuro.AutoSize = true;
+            labelWalletEuro.Location = new Point(681, 417);
+            labelWalletEuro.Name = "labelWalletEuro";
+            labelWalletEuro.Size = new Size(17, 20);
+            labelWalletEuro.TabIndex = 11;
+            labelWalletEuro.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(636, 223);
+            label6.Name = "label6";
+            label6.Size = new Size(43, 20);
+            label6.TabIndex = 12;
+            label6.Text = "Логи";
+            // 
+            // listBoxLogs
+            // 
+            listBoxLogs.FormattingEnabled = true;
+            listBoxLogs.ItemHeight = 20;
+            listBoxLogs.Location = new Point(532, 253);
+            listBoxLogs.Name = "listBoxLogs";
+            listBoxLogs.Size = new Size(254, 124);
+            listBoxLogs.TabIndex = 13;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(801, 507);
+            Controls.Add(listBoxLogs);
+            Controls.Add(label6);
+            Controls.Add(labelWalletEuro);
+            Controls.Add(label4);
             Controls.Add(listNews);
             Controls.Add(label5);
-            Controls.Add(labelWallet);
+            Controls.Add(labelWalletRubles);
             Controls.Add(label3);
             Controls.Add(buttonSell);
             Controls.Add(buttonBuy);
@@ -162,8 +206,12 @@
         private Button buttonBuy;
         private Button buttonSell;
         private Label label3;
-        private Label labelWallet;
+        private Label labelWalletRubles;
         private Label label5;
         private ListBox listNews;
+        private Label label4;
+        private Label labelWalletEuro;
+        private Label label6;
+        private ListBox listBoxLogs;
     }
 }
