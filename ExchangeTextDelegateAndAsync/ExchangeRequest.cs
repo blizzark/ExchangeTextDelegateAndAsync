@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExchangeTextDelegateAndAsync
+﻿namespace ExchangeTextDelegateAndAsync
 {
     public class ExchangeRequest
     {
@@ -22,7 +16,7 @@ namespace ExchangeTextDelegateAndAsync
                 {
                     priceBuy = (new Random()).Next(80, 90);
                 } while (priceBuy > priceSell);
-               
+
                 requestHandler?.Invoke(priceSell, priceBuy);
 
                 Thread.Sleep(new Random().Next(1000, 3000));

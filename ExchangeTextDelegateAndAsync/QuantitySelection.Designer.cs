@@ -31,7 +31,7 @@
             label1 = new Label();
             buttonMinus100 = new Button();
             buttonMinus10 = new Button();
-            textBox1 = new TextBox();
+            textBoxSum = new TextBox();
             buttonOk = new Button();
             buttonPlus100 = new Button();
             buttonPlus10 = new Button();
@@ -54,6 +54,7 @@
             buttonMinus100.TabIndex = 1;
             buttonMinus100.Text = "-100";
             buttonMinus100.UseVisualStyleBackColor = true;
+            buttonMinus100.Click += buttonMinus100_Click;
             // 
             // buttonMinus10
             // 
@@ -63,15 +64,18 @@
             buttonMinus10.TabIndex = 2;
             buttonMinus10.Text = "-10";
             buttonMinus10.UseVisualStyleBackColor = true;
+            buttonMinus10.Click += buttonMinus10_Click;
             // 
-            // textBox1
+            // textBoxSum
             // 
-            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(188, 66);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 47);
-            textBox1.TabIndex = 3;
-            textBox1.Text = "0";
+            textBoxSum.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxSum.Location = new Point(188, 66);
+            textBoxSum.Name = "textBoxSum";
+            textBoxSum.Size = new Size(125, 47);
+            textBoxSum.TabIndex = 3;
+            textBoxSum.Text = "0";
+            textBoxSum.TextChanged += textBoxSum_TextChanged;
+            textBoxSum.KeyPress += textBoxSum_KeyPress;
             // 
             // buttonOk
             // 
@@ -82,6 +86,7 @@
             buttonOk.TabIndex = 4;
             buttonOk.Text = "Ок";
             buttonOk.UseVisualStyleBackColor = true;
+            buttonOk.Click += buttonOk_Click;
             // 
             // buttonPlus100
             // 
@@ -91,6 +96,7 @@
             buttonPlus100.TabIndex = 6;
             buttonPlus100.Text = "+100";
             buttonPlus100.UseVisualStyleBackColor = true;
+            buttonPlus100.Click += buttonPlus100_Click;
             // 
             // buttonPlus10
             // 
@@ -100,6 +106,7 @@
             buttonPlus10.TabIndex = 5;
             buttonPlus10.Text = "+10";
             buttonPlus10.UseVisualStyleBackColor = true;
+            buttonPlus10.Click += buttonPlus10_Click;
             // 
             // QuantitySelection
             // 
@@ -109,7 +116,7 @@
             Controls.Add(buttonPlus100);
             Controls.Add(buttonPlus10);
             Controls.Add(buttonOk);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxSum);
             Controls.Add(buttonMinus10);
             Controls.Add(buttonMinus100);
             Controls.Add(label1);
@@ -127,7 +134,7 @@
         private Label label1;
         private Button buttonMinus100;
         private Button buttonMinus10;
-        private TextBox textBox1;
+        private TextBox textBoxSum;
         private Button buttonOk;
         private Button buttonPlus100;
         private Button buttonPlus10;
