@@ -10,11 +10,11 @@
         {
             while (true)
             {
-                decimal priceSell = (new Random()).Next(80, 90);
+                decimal priceSell = (new Random()).Next(60, 120);
                 decimal priceBuy = 0;
                 do
                 {
-                    priceBuy = (new Random()).Next(80, 90);
+                    priceBuy = (new Random()).Next(60, 120);
                 } while (priceBuy < priceSell);
 
                 requestHandler?.Invoke(priceSell, priceBuy);

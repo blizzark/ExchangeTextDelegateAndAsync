@@ -73,15 +73,17 @@ namespace ExchangeTextDelegateAndAsync
         {
             QuantitySelection win = new QuantitySelection();
             win.ShowDialog();
-            if (win.Num * EuroBuy > WalletRubles)
-                MessageBox.Show("У вас недостаточно средств!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-                WalletRubles -= win.Num * EuroBuy;
-                WalletEuro += win.Num;
-                updateLabelsHandler();
-                listBoxLogs.Items.Add($"Купил {win.Num} евро по курсу {EuroBuy}");
-            }
+            if (win.Deal)
+                if (win.Num * EuroBuy > WalletRubles)
+                    MessageBox.Show("У вас недостаточно средств!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    WalletRubles -= win.Num * EuroBuy;
+                    WalletEuro += win.Num;
+                    updateLabelsHandler();
+                    listBoxLogs.Items.Add($"Купил {win.Num} евро по курсу {EuroBuy}");
+                    this.listBoxLogs.SelectedIndex = this.listBoxLogs.Items.Count - 1;
+                }
 
         }
 
@@ -89,15 +91,17 @@ namespace ExchangeTextDelegateAndAsync
         {
             QuantitySelection win = new QuantitySelection();
             win.ShowDialog();
-            if (win.Num > WalletEuro)
-                MessageBox.Show("У вас недостаточно средств!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-                WalletEuro -= win.Num;
-                WalletRubles += win.Num * EuroSell;
-                updateLabelsHandler();
-                listBoxLogs.Items.Add($"Продал {win.Num} евро по курсу {EuroSell}");
-            }
+            if (win.Deal)
+                if (win.Num > WalletEuro)
+                    MessageBox.Show("У вас недостаточно средств!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    WalletEuro -= win.Num;
+                    WalletRubles += win.Num * EuroSell;
+                    updateLabelsHandler();
+                    listBoxLogs.Items.Add($"Продал {win.Num} евро по курсу {EuroSell}");
+                    this.listBoxLogs.SelectedIndex = this.listBoxLogs.Items.Count - 1;
+                }
         }
     }
 }

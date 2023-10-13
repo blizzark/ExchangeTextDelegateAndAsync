@@ -3,9 +3,11 @@
     public partial class QuantitySelection : Form
     {
         public decimal Num { get; set; }
+        public bool Deal { get; set; }
         public QuantitySelection()
         {
             InitializeComponent();
+            Deal = false;
         }
 
         private void QuantitySelection_Load(object sender, EventArgs e)
@@ -56,8 +58,12 @@
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            Num = Convert.ToDecimal(textBoxSum.Text);
-            this.Close();
+            if (Convert.ToDecimal(textBoxSum.Text) > 0)
+            {
+                Deal = true;
+                Num = Convert.ToDecimal(textBoxSum.Text);
+                this.Close();
+            }
         }
     }
 }
