@@ -1,3 +1,5 @@
+using static System.Net.Mime.MediaTypeNames;
+
 namespace ExchangeTextDelegateAndAsync
 {
     public partial class Form1 : Form
@@ -24,8 +26,6 @@ namespace ExchangeTextDelegateAndAsync
             };
 
             updateLabelsHandler();
-            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-            CancellationToken token = cancelTokenSource.Token;
 
             ExchangeRequest exchangeRequest = new ExchangeRequest();
             RequestNews requestNews = new RequestNews();
@@ -45,6 +45,36 @@ namespace ExchangeTextDelegateAndAsync
 
 
         }
+        private delegate void SafeCallDelegate(decimal priceSell, decimal priceBuy);
+
+
+        public void SetExchangeRateBuy(decimal priceSell, decimal priceBuy)
+        {
+            if (listPriceBuyEuro.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(SetExchangeRateBuy);
+                listPriceBuyEuro.Invoke(d, new object[] { priceSell, priceBuy });
+            }
+            else
+            {
+                listPriceBuyEuro.Items.Add(priceBuy.ToString());
+                this.listPriceBuyEuro.SelectedIndex = this.listPriceBuyEuro.Items.Count - 1;
+            }
+        }
+
+        public void SetExchangeRateSell(decimal priceSell, decimal priceBuy)
+        {
+            if (listPriceSellEuro.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(SetExchangeRateSell);
+                listPriceSellEuro.Invoke(d, new object[] { priceSell, priceBuy });
+            }
+            else
+            {
+                listPriceSellEuro.Items.Add(priceSell.ToString());
+                this.listPriceSellEuro.SelectedIndex = this.listPriceSellEuro.Items.Count - 1;
+            }
+        }
 
         public void CurrentPrice(decimal priceSell, decimal priceBuy)
         {
@@ -54,19 +84,32 @@ namespace ExchangeTextDelegateAndAsync
             //---------------------------------------------------------------------------------------------------------
             // пон€л ошибку. ¬ызов этого метода идЄт в классе ExchangeRequest, который не знает что такое 'listPriceBuyEuro'
             // однако не пон€л как решить эту проблему. ћожно реализовать паттерн Ќаблюдатель, но тогда их придЄтс€ делать 2 (курс валют и новости)
+            //---------------------------------------------------------------------------------------------------------
+            // пон€л как решить проблему. оказываетс€ такой вызов непотокобезопасный. 3 варианта решени€: игнор, создание делегата дл€ слежени€ какому к какому потому относитс€ элемент, создание обработчика событий. 
+            // € выбрал создание делегата. ѕришлось запихнуть в отельные методы, т.к. при вызове этого метода иногда курс мог успеть изменитьс€. (т.е. отображались бы старые данные)
             EuroSell = priceSell;
             EuroBuy = priceBuy;
-            listPriceBuyEuro.Items.Add(EuroBuy.ToString());
-            listPriceSellEuro.Items.Add(EuroSell.ToString());
 
-            this.listPriceBuyEuro.SelectedIndex = this.listPriceBuyEuro.Items.Count - 1;
-            this.listPriceSellEuro.SelectedIndex = this.listPriceSellEuro.Items.Count - 1;
+            SetExchangeRateBuy(priceSell, priceBuy);
+            SetExchangeRateSell(priceSell, priceBuy);
         }
-
+        private delegate void SafeCallDelegateForNews(string text);
         public void CurrentNews(string news)
         {
-            listNews.Items.Add(news);
-            this.listNews.SelectedIndex = this.listNews.Items.Count - 1;
+
+            if (listNews.InvokeRequired )
+            {
+                var d = new SafeCallDelegateForNews(CurrentNews);
+                listNews.Invoke(d, new object[] { news });
+
+            }
+            else
+            {
+                listNews.Items.Add(news);
+                this.listNews.SelectedIndex = this.listNews.Items.Count - 1;
+            }
+               
+            
         }
 
         private void buttonBuy_Click(object sender, EventArgs e)
